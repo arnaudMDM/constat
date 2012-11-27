@@ -1,0 +1,1880 @@
+<?xml version="1.0" encoding="ISO8859-1" ?>
+<!DOCTYPE SherlockUnit SYSTEM "SherlockUnit.dtd">
+
+<SherlockUnit>
+ <SherlockVersion> Version 12/2010 </SherlockVersion>
+ <NAME> constat </NAME>
+ <CREATION> 27/11/2012 10:32:40 </CREATION>
+ <UPDATE> 27/11/2012 18:57:27 </UPDATE>
+
+ <CONFIGURATION>
+  <TraceSystem> mini </TraceSystem>
+  <TraceExec> mini </TraceExec>
+  <Autosave> OFF </Autosave>
+  <Dialog>
+   <LabelSuite> Suite </LabelSuite>
+   <LabelEnd> Fin Exec </LabelEnd>
+   <LabelYes> oui </LabelYes>
+   <LabelNo> non </LabelNo>
+   <LabelKnown> connu </LabelKnown>
+   <LabelUnknown> inconnu </LabelUnknown>
+  </Dialog>
+  <Unconsistency>
+   <StandardProcess> OFF </StandardProcess>
+   <StandardDescription> ON </StandardDescription>
+   <InvolvedFact> ON </InvolvedFact>
+   <InvolvedRule> ON </InvolvedRule>
+   <FactIn> ²Le problème§incohérence portant sur </FactIn>
+   <RuleIn> ²Le problème§incohérence détectée par </RuleIn>
+  </Unconsistency>
+ </CONFIGURATION>
+
+ <TASKDEFS>
+  <TASKDEF  name="Tâche Principale">
+  </TASKDEF>
+  <TASKDEF  name="Evaluation des torts">
+    <PartOf> Tâche Principale </PartOf>
+  </TASKDEF>
+ </TASKDEFS>
+
+ <BASEDEFS>
+  <METABASEDEF  name="Base de Méta Règles">
+  </METABASEDEF>
+  <BASEDEF  name="Base de Règles">
+  </BASEDEF>
+  <BASEDEF  name="Base Règle Incoherence">
+    <PartOf> Base de Règles </PartOf>
+  </BASEDEF>
+  <BASEDEF  name="Base Calcul Torts">
+    <PartOf> Base de Règles </PartOf>
+  </BASEDEF>
+ </BASEDEFS>
+
+ <METACONCEPTS>
+  <METACONCEPT  name="²Elément de Connaissance">
+  </METACONCEPT>
+  <METACONCEPT  name="²Connaissance de Résolution">
+   <AKindOf> ²Elément de Connaissance </AKindOf>
+  </METACONCEPT>
+  <METACONCEPT  name="²Connaissance de Domaine">
+   <AKindOf> ²Elément de Connaissance </AKindOf>
+  </METACONCEPT>
+  <METACONCEPT  name="²Modèle">
+   <AKindOf> ²Connaissance de Domaine </AKindOf>
+   <ATTRIBUTES>
+    <String  name="nom">
+    </String>
+   </ATTRIBUTES>
+   <INSTANCES>
+    <INSTANCE  name="²Le modèle"> 
+     <ATTRIBUTES>
+      <String  name="nom">
+       <ToAffirm> nom du modèle : ^ </ToAffirm>
+      </String>
+     </ATTRIBUTES>
+    </INSTANCE> 
+   </INSTANCES>
+  </METACONCEPT>
+  <METACONCEPT  name="²Problème">
+   <AKindOf> ²Connaissance de Résolution </AKindOf>
+   <ATTRIBUTES>
+    <Boolean  name="incohérence à l'exécution">
+       <InitialNEQ> vrai </InitialNEQ>
+       <InitialEQ> faux </InitialEQ>
+     <ToDeny> Aucune incohérence à l'exécution </ToDeny>
+     <ToAffirm> Une incohérence est apparue lors de l'exécution </ToAffirm>
+    </Boolean>
+    <String  name="incohérence détectée par">
+     <ToAffirm> L'incohérence a été détectée par ^ </ToAffirm>
+    </String>
+    <String  name="incohérence portant sur">
+     <ToAffirm> L'incohérence porte sur ^ </ToAffirm>
+    </String>
+    <String  name="date">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="heure">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <Numerical  name="étape">
+     <Min> 0 </Min>
+     <Max> 65535 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     <ToAffirm> étape de résolution : ^ </ToAffirm>
+    </Numerical>
+    <Numerical  name="profondeur">
+     <Min> 0 </Min>
+     <Max> 65535 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     <ToAffirm> profondeur du raisonnement : ^ </ToAffirm>
+    </Numerical>
+   </ATTRIBUTES>
+   <INSTANCES>
+    <INSTANCE  name="²Le problème"> 
+     <ATTRIBUTES>
+      <Boolean  name="incohérence à l'exécution">
+       <ToDeny> Aucune incohérence à l'exécution </ToDeny>
+       <ToAffirm> Une incohérence est apparue lors de l'exécution </ToAffirm>
+      </Boolean>
+      <String  name="incohérence détectée par">
+       <ToAffirm> L'incohérence a été détectée par ^ </ToAffirm>
+      </String>
+      <String  name="incohérence portant sur">
+       <ToAffirm> L'incohérence porte sur ^ </ToAffirm>
+      </String>
+      <String  name="date">
+       <ToAffirm> ^ </ToAffirm>
+      </String>
+      <String  name="heure">
+       <ToAffirm> ^ </ToAffirm>
+      </String>
+      <Numerical  name="étape">
+       <ToAffirm> étape de résolution : ^ </ToAffirm>
+      </Numerical>
+      <Numerical  name="profondeur">
+       <ToAffirm> profondeur du raisonnement : ^ </ToAffirm>
+      </Numerical>
+     </ATTRIBUTES>
+    </INSTANCE> 
+   </INSTANCES>
+  </METACONCEPT>
+  <METACONCEPT  name="²Règle">
+   <AKindOf> ²Connaissance de Résolution </AKindOf>
+   <ATTRIBUTES>
+    <String  name="nom">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="base">
+     <ToAffirm> La règle ^I appartient à la base ^ </ToAffirm>
+    </String>
+    <String  name="commentaire">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="si">
+       <InitialEQ> Si \n </InitialEQ>
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="alors">
+       <InitialEQ> Alors \n </InitialEQ>
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <Boolean  name="utilisée">
+       <InitialNEQ> vrai </InitialNEQ>
+       <InitialEQ> faux </InitialEQ>
+     <ToDeny> La règle ^I n'a pas été utilisée </ToDeny>
+     <ToAffirm> La règle ^I a été utilisée </ToAffirm>
+    </Boolean>
+    <Numerical  name="nb usages">
+     <Protected> no </Protected>
+     <Min> 0 </Min>
+     <Max> 100 </Max>
+       <InitialEQ> 0 </InitialEQ>
+    </Numerical>
+   </ATTRIBUTES>
+  </METACONCEPT>
+  <METACONCEPT  name="²Base de Règles">
+   <AKindOf> ²Connaissance de Résolution </AKindOf>
+   <ATTRIBUTES>
+    <String  name="nom">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="partie de">
+     <ToAffirm> La base ^I est une sous-base de ^ </ToAffirm>
+    </String>
+    <Boolean  name="inhibée">
+     <ToDeny> La base ^I n'est pas inhibée </ToDeny>
+     <ToAffirm> La base ^I est inhibée </ToAffirm>
+    </Boolean>
+    <String  name="commentaire">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <Numerical  name="nb règles">
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     <ToAffirm> Le nombre de règles de la base ^I est : ^ </ToAffirm>
+    </Numerical>
+    <Numerical  name="priorité">
+     <Protected> no </Protected>
+     <Min> 0 </Min>
+     <Max> 100 </Max>
+       <InitialEQ> 1 </InitialEQ>
+    </Numerical>
+   </ATTRIBUTES>
+  </METACONCEPT>
+  <METACONCEPT  name="²Méta Règle">
+   <AKindOf> ²Connaissance de Résolution </AKindOf>
+   <ATTRIBUTES>
+    <String  name="nom">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="base">
+     <ToAffirm> La méta-règle ^I appartient à la base ^ </ToAffirm>
+    </String>
+    <String  name="commentaire">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="si">
+       <InitialEQ> Si \n </InitialEQ>
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="alors">
+       <InitialEQ> Alors \n </InitialEQ>
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <Boolean  name="utilisée">
+       <InitialNEQ> vrai </InitialNEQ>
+       <InitialEQ> faux </InitialEQ>
+     <ToDeny> La méta-règle ^I n'a pas été utilisée </ToDeny>
+     <ToAffirm> La méta-règle ^I a été utilisée </ToAffirm>
+    </Boolean>
+   </ATTRIBUTES>
+  </METACONCEPT>
+  <METACONCEPT  name="²Base de Méta Règles">
+   <AKindOf> ²Connaissance de Résolution </AKindOf>
+   <ATTRIBUTES>
+    <String  name="nom">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <String  name="partie de">
+     <ToAffirm> La base ^I est une sous-base de ^ </ToAffirm>
+    </String>
+    <String  name="commentaire">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <Boolean  name="inhibée">
+     <ToDeny> La base ^I n'est pas inhibée </ToDeny>
+     <ToAffirm> La base ^I est inhibée </ToAffirm>
+    </Boolean>
+    <Numerical  name="nb méta règles">
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     <ToAffirm> Le nombre de règles de la base ^I est : ^ </ToAffirm>
+    </Numerical>
+   </ATTRIBUTES>
+  </METACONCEPT>
+  <METACONCEPT  name="²Tâche">
+   <AKindOf> ²Connaissance de Résolution </AKindOf>
+   <ATTRIBUTES>
+    <String  name="nom">
+     <ToAffirm> ^ </ToAffirm>
+    </String>
+    <Boolean  name="activée">
+       <InitialNEQ> vrai </InitialNEQ>
+       <InitialEQ> faux </InitialEQ>
+     <ToDeny> La tâche ^I n'a pas été activée </ToDeny>
+     <ToAffirm> La tâche ^I a été activée </ToAffirm>
+    </Boolean>
+    <Boolean  name="achevée">
+       <InitialNEQ> vrai </InitialNEQ>
+       <InitialEQ> faux </InitialEQ>
+     <ToDeny> La tâche ^I n'est pas achevée </ToDeny>
+     <ToAffirm> La tâche ^I est achevée </ToAffirm>
+    </Boolean>
+   </ATTRIBUTES>
+  </METACONCEPT>
+ </METACONCEPTS>
+
+ <CONCEPTS>
+  <CONCEPT  name="Chose">
+   <PartOf> •Monde• </PartOf>
+   <SetOf> •• </SetOf>
+   <NbSet> 0 </NbSet>
+   <Abstract> yes </Abstract>
+   <PROPERTIES>
+     <Numerical  name="nb instances">
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     </Numerical>
+     <Numerical  name="nb global instances">
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     </Numerical>
+   </PROPERTIES>
+  </CONCEPT>
+  <CONCEPT  name="Véhicule">
+   <AKindOf> Chose </AKindOf>
+   <PartOf> •Monde• </PartOf>
+   <SetOf> •• </SetOf>
+   <NbSet> 0 </NbSet>
+   <Abstract> no </Abstract>
+   <PROPERTIES>
+     <Numerical  name="nb instances">
+     <Inherited> yes </Inherited>
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     </Numerical>
+     <Numerical  name="nb global instances">
+     <Inherited> yes </Inherited>
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     </Numerical>
+   </PROPERTIES>
+   <ATTRIBUTES>
+    <Boolean  name="c2">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c3">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c4">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c6">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c7">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c8">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c9">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c10">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c11">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c12">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c13">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c15">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c16">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c17">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Numerical  name="nb cases cochées">
+     <Min> 0 </Min>
+     <Max> 18 </Max>
+       <InitialEQ> 0 </InitialEQ>
+    </Numerical>
+    <Monovalued  name="torts">
+     <Values>
+      <Val> 
+        <Value> 0 </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> 25 </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> 50 </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> 75 </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> 100 </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+     </Values>
+    </Monovalued>
+    <Numerical  name="compteur de cases">
+     <Min> 0 </Min>
+     <Max> 18 </Max>
+       <InitialEQ> 0 </InitialEQ>
+    </Numerical>
+    <Boolean  name="c1">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c5">
+     <From> •Circonstance </From>
+    </Boolean>
+    <Boolean  name="c14">
+     <From> •Circonstance </From>
+    </Boolean>
+   </ATTRIBUTES>
+   <INSTANCES>
+    <INSTANCE  name="A"> 
+     <ATTRIBUTES>
+      <Boolean  name="c2">
+       <ToAsk> Est ce que  c2 de A ? </ToAsk>
+       <ToDeny> c2 de A est faux </ToDeny>
+       <ToAffirm> c2 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c3">
+       <ToAsk> Est ce que  c3 de A ? </ToAsk>
+       <ToDeny> c3 de A est faux </ToDeny>
+       <ToAffirm> c3 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c4">
+       <ToAsk> Est ce que  c4 de A ? </ToAsk>
+       <ToDeny> c4 de A est faux </ToDeny>
+       <ToAffirm> c4 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c6">
+       <ToAsk> Est ce que  c6 de A ? </ToAsk>
+       <ToDeny> c6 de A est faux </ToDeny>
+       <ToAffirm> c6 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c7">
+       <ToAsk> Est ce que  c7 de A ? </ToAsk>
+       <ToDeny> c7 de A est faux </ToDeny>
+       <ToAffirm> c7 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c8">
+       <ToAsk> Est ce que  c8 de A ? </ToAsk>
+       <ToDeny> c8 de A est faux </ToDeny>
+       <ToAffirm> c8 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c9">
+       <ToAsk> Est ce que  c9 de A ? </ToAsk>
+       <ToDeny> c9 de A est faux </ToDeny>
+       <ToAffirm> c9 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c10">
+       <ToAsk> Est ce que  c10 de A ? </ToAsk>
+       <ToDeny> c10 de A est faux </ToDeny>
+       <ToAffirm> c10 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c11">
+       <ToAsk> Est ce que  c11 de A ? </ToAsk>
+       <ToDeny> c11 de A est faux </ToDeny>
+       <ToAffirm> c11 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c12">
+       <ToAsk> Est ce que  c12 de A ? </ToAsk>
+       <ToDeny> c12 de A est faux </ToDeny>
+       <ToAffirm> c12 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c13">
+       <ToAsk> Est ce que  c13 de A ? </ToAsk>
+       <ToDeny> c13 de A est faux </ToDeny>
+       <ToAffirm> c13 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c15">
+       <ToAsk> Est ce que  c15 de A ? </ToAsk>
+       <ToDeny> c15 de A est faux </ToDeny>
+       <ToAffirm> c15 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c16">
+       <ToAsk> Est ce que  c16 de A ? </ToAsk>
+       <ToDeny> c16 de A est faux </ToDeny>
+       <ToAffirm> c16 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c17">
+       <ToAsk> Est ce que  c17 de A ? </ToAsk>
+       <ToDeny> c17 de A est faux </ToDeny>
+       <ToAffirm> c17 de A est vrai </ToAffirm>
+      </Boolean>
+      <Numerical  name="nb cases cochées">
+       <InitialEQ> 0 </InitialEQ>
+       <ToAsk> Que vaut  nb cases cochées de A ? </ToAsk>
+       <ToAffirm> nb cases cochées de A = ^ </ToAffirm>
+      </Numerical>
+      <Numerical  name="compteur de cases">
+       <InitialEQ> 0 </InitialEQ>
+       <ToAsk> Que vaut  compteur de cases de A ? </ToAsk>
+       <ToAffirm> compteur de cases de A = ^ </ToAffirm>
+      </Numerical>
+      <Boolean  name="c1">
+       <ToAsk> Est ce que  c1 de A ? </ToAsk>
+       <ToDeny> c1 de A est faux </ToDeny>
+       <ToAffirm> c1 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c5">
+       <ToAsk> Est ce que  c5 de A ? </ToAsk>
+       <ToDeny> c5 de A est faux </ToDeny>
+       <ToAffirm> c5 de A est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c14">
+       <ToAsk> Est ce que  c14 de A ? </ToAsk>
+       <ToDeny> c14 de A est faux </ToDeny>
+       <ToAffirm> c14 de A est vrai </ToAffirm>
+      </Boolean>
+      <Monovalued  name="torts">
+       <InitialEQ> 0 </InitialEQ>
+       <InitialNEQ> 25 </InitialNEQ>
+       <InitialNEQ> 50 </InitialNEQ>
+       <InitialNEQ> 75 </InitialNEQ>
+       <InitialNEQ> 100 </InitialNEQ>
+       <ToAsk> Que vaut  torts de A ? </ToAsk>
+       <ToDeny> torts de A # ^ </ToDeny>
+       <ToAffirm> torts de A = ^ </ToAffirm>
+      </Monovalued>
+     </ATTRIBUTES>
+    </INSTANCE> 
+    <INSTANCE  name="B"> 
+     <ATTRIBUTES>
+      <Boolean  name="c2">
+       <ToAsk> Est ce que  c2 de B ? </ToAsk>
+       <ToDeny> c2 de B est faux </ToDeny>
+       <ToAffirm> c2 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c3">
+       <ToAsk> Est ce que  c3 de B ? </ToAsk>
+       <ToDeny> c3 de B est faux </ToDeny>
+       <ToAffirm> c3 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c4">
+       <ToAsk> Est ce que  c4 de B ? </ToAsk>
+       <ToDeny> c4 de B est faux </ToDeny>
+       <ToAffirm> c4 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c6">
+       <ToAsk> Est ce que  c6 de B ? </ToAsk>
+       <ToDeny> c6 de B est faux </ToDeny>
+       <ToAffirm> c6 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c7">
+       <ToAsk> Est ce que  c7 de B ? </ToAsk>
+       <ToDeny> c7 de B est faux </ToDeny>
+       <ToAffirm> c7 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c8">
+       <ToAsk> Est ce que  c8 de B ? </ToAsk>
+       <ToDeny> c8 de B est faux </ToDeny>
+       <ToAffirm> c8 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c9">
+       <ToAsk> Est ce que  c9 de B ? </ToAsk>
+       <ToDeny> c9 de B est faux </ToDeny>
+       <ToAffirm> c9 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c10">
+       <ToAsk> Est ce que  c10 de B ? </ToAsk>
+       <ToDeny> c10 de B est faux </ToDeny>
+       <ToAffirm> c10 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c11">
+       <ToAsk> Est ce que  c11 de B ? </ToAsk>
+       <ToDeny> c11 de B est faux </ToDeny>
+       <ToAffirm> c11 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c12">
+       <ToAsk> Est ce que  c12 de B ? </ToAsk>
+       <ToDeny> c12 de B est faux </ToDeny>
+       <ToAffirm> c12 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c13">
+       <ToAsk> Est ce que  c13 de B ? </ToAsk>
+       <ToDeny> c13 de B est faux </ToDeny>
+       <ToAffirm> c13 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c15">
+       <ToAsk> Est ce que  c15 de B ? </ToAsk>
+       <ToDeny> c15 de B est faux </ToDeny>
+       <ToAffirm> c15 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c16">
+       <ToAsk> Est ce que  c16 de B ? </ToAsk>
+       <ToDeny> c16 de B est faux </ToDeny>
+       <ToAffirm> c16 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c17">
+       <ToAsk> Est ce que  c17 de B ? </ToAsk>
+       <ToDeny> c17 de B est faux </ToDeny>
+       <ToAffirm> c17 de B est vrai </ToAffirm>
+      </Boolean>
+      <Numerical  name="nb cases cochées">
+       <InitialEQ> 0 </InitialEQ>
+       <ToAsk> Que vaut  nb cases cochées de B ? </ToAsk>
+       <ToAffirm> nb cases cochées de B = ^ </ToAffirm>
+      </Numerical>
+      <Numerical  name="compteur de cases">
+       <InitialEQ> 0 </InitialEQ>
+       <ToAsk> Que vaut  compteur de cases de B ? </ToAsk>
+       <ToAffirm> compteur de cases de B = ^ </ToAffirm>
+      </Numerical>
+      <Boolean  name="c1">
+       <ToAsk> Est ce que  c1 de B ? </ToAsk>
+       <ToDeny> c1 de B est faux </ToDeny>
+       <ToAffirm> c1 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c5">
+       <ToAsk> Est ce que  c5 de B ? </ToAsk>
+       <ToDeny> c5 de B est faux </ToDeny>
+       <ToAffirm> c5 de B est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c14">
+       <ToAsk> Est ce que  c14 de B ? </ToAsk>
+       <ToDeny> c14 de B est faux </ToDeny>
+       <ToAffirm> c14 de B est vrai </ToAffirm>
+      </Boolean>
+      <Monovalued  name="torts">
+       <InitialEQ> 0 </InitialEQ>
+       <InitialNEQ> 25 </InitialNEQ>
+       <InitialNEQ> 50 </InitialNEQ>
+       <InitialNEQ> 75 </InitialNEQ>
+       <InitialNEQ> 100 </InitialNEQ>
+       <ToAsk> Que vaut  torts de B ? </ToAsk>
+       <ToDeny> torts de B # ^ </ToDeny>
+       <ToAffirm> torts de B = ^ </ToAffirm>
+      </Monovalued>
+     </ATTRIBUTES>
+    </INSTANCE> 
+   </INSTANCES>
+  </CONCEPT>
+  <CONCEPT  name="Sinistre">
+   <AKindOf> Chose </AKindOf>
+   <PartOf> •Monde• </PartOf>
+   <SetOf> •• </SetOf>
+   <NbSet> 0 </NbSet>
+   <Abstract> no </Abstract>
+   <PROPERTIES>
+     <Numerical  name="nb instances">
+     <Inherited> yes </Inherited>
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     </Numerical>
+     <Numerical  name="nb global instances">
+     <Inherited> yes </Inherited>
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     </Numerical>
+   </PROPERTIES>
+   <ATTRIBUTES>
+    <Boolean  name="saisie cohérente">
+    </Boolean>
+    <Boolean  name="constat recevable">
+    </Boolean>
+   </ATTRIBUTES>
+   <INSTANCES>
+    <INSTANCE  name="s"> 
+     <ATTRIBUTES>
+      <Boolean  name="saisie cohérente">
+       <ToAsk> Est ce que  saisie cohérente de s ? </ToAsk>
+       <ToDeny> saisie cohérente de s est faux </ToDeny>
+       <ToAffirm> saisie cohérente de s est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="constat recevable">
+       <ToAsk> Est ce que  constat recevable de s ? </ToAsk>
+       <ToDeny> constat recevable de s est faux </ToDeny>
+       <ToAffirm> constat recevable de s est vrai </ToAffirm>
+      </Boolean>
+     </ATTRIBUTES>
+    </INSTANCE> 
+   </INSTANCES>
+  </CONCEPT>
+  <CONCEPT  name="Circonstance">
+   <AKindOf> Chose </AKindOf>
+   <PartOf> Véhicule </PartOf>
+   <SetOf> •• </SetOf>
+   <NbSet> 0 </NbSet>
+   <Abstract> no </Abstract>
+   <PROPERTIES>
+     <Numerical  name="nb instances">
+     <Inherited> yes </Inherited>
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     </Numerical>
+     <Numerical  name="nb global instances">
+     <Inherited> yes </Inherited>
+     <Min> 0 </Min>
+     <Max> 1024 </Max>
+       <InitialEQ> 0 </InitialEQ>
+     </Numerical>
+   </PROPERTIES>
+   <ATTRIBUTES>
+    <Boolean  name="c1">
+    </Boolean>
+    <Boolean  name="c2">
+    </Boolean>
+    <Boolean  name="c3">
+    </Boolean>
+    <Boolean  name="c4">
+    </Boolean>
+    <Boolean  name="c5">
+    </Boolean>
+    <Boolean  name="c6">
+    </Boolean>
+    <Boolean  name="c7">
+    </Boolean>
+    <Boolean  name="c8">
+    </Boolean>
+    <Boolean  name="c9">
+    </Boolean>
+    <Boolean  name="c10">
+    </Boolean>
+    <Boolean  name="c11">
+    </Boolean>
+    <Boolean  name="c12">
+    </Boolean>
+    <Boolean  name="c13">
+    </Boolean>
+    <Boolean  name="c14">
+    </Boolean>
+    <Boolean  name="c15">
+    </Boolean>
+    <Boolean  name="c16">
+    </Boolean>
+    <Boolean  name="c17">
+    </Boolean>
+   </ATTRIBUTES>
+  </CONCEPT>
+ </CONCEPTS>
+
+ <SCREENS>
+  <SCREEN  name="Constat">
+   <ScreenColor> #00FFFBF0 </ScreenColor>
+   <Background> \\Servif-home\fic_eleves\Espace Pedagogique\4IF\Modeles et Outils Mathematiques\Modelisation cognitive\Projet\FicheConstat.JPG </Background>
+   <ScreenWidth> 609 </ScreenWidth>
+   <ScreenHeight> 865 </ScreenHeight>
+   <Controls>
+    <Label>
+     <RefControl> c4 </RefControl>
+     <Info> 0 </Info>
+     <Top> 178 </Top>
+     <Left> 198 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c1 </RefControl>
+     <Info> 0 </Info>
+     <Top> 136 </Top>
+     <Left> 198 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c2 </RefControl>
+     <Info> 0 </Info>
+     <Top> 152 </Top>
+     <Left> 198 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c3 </RefControl>
+     <Info> 0 </Info>
+     <Top> 166 </Top>
+     <Left> 198 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c5 </RefControl>
+     <Info> 0 </Info>
+     <Top> 195 </Top>
+     <Left> 199 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c6 </RefControl>
+     <Info> 0 </Info>
+     <Top> 210 </Top>
+     <Left> 198 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c7 </RefControl>
+     <Info> 0 </Info>
+     <Top> 225 </Top>
+     <Left> 198 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c8 </RefControl>
+     <Info> 0 </Info>
+     <Top> 239 </Top>
+     <Left> 198 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c9 </RefControl>
+     <Info> 0 </Info>
+     <Top> 254 </Top>
+     <Left> 199 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c10 </RefControl>
+     <Info> 0 </Info>
+     <Top> 270 </Top>
+     <Left> 192 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c11 </RefControl>
+     <Info> 0 </Info>
+     <Top> 285 </Top>
+     <Left> 193 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c12 </RefControl>
+     <Info> 0 </Info>
+     <Top> 300 </Top>
+     <Left> 191 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c13 </RefControl>
+     <Info> 0 </Info>
+     <Top> 315 </Top>
+     <Left> 190 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c14 </RefControl>
+     <Info> 0 </Info>
+     <Top> 329 </Top>
+     <Left> 191 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c15 </RefControl>
+     <Info> 0 </Info>
+     <Top> 344 </Top>
+     <Left> 191 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c16 </RefControl>
+     <Info> 0 </Info>
+     <Top> 360 </Top>
+     <Left> 190 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c17 </RefControl>
+     <Info> 0 </Info>
+     <Top> 373 </Top>
+     <Left> 191 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c1 </RefControl>
+     <Info> 0 </Info>
+     <Top> 131 </Top>
+     <Left> 386 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c2 </RefControl>
+     <Info> 0 </Info>
+     <Top> 149 </Top>
+     <Left> 386 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c3 </RefControl>
+     <Info> 0 </Info>
+     <Top> 165 </Top>
+     <Left> 387 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c4 </RefControl>
+     <Info> 0 </Info>
+     <Top> 181 </Top>
+     <Left> 385 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c5 </RefControl>
+     <Info> 0 </Info>
+     <Top> 196 </Top>
+     <Left> 386 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c6 </RefControl>
+     <Info> 0 </Info>
+     <Top> 211 </Top>
+     <Left> 388 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c7 </RefControl>
+     <Info> 0 </Info>
+     <Top> 225 </Top>
+     <Left> 388 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c8 </RefControl>
+     <Info> 0 </Info>
+     <Top> 240 </Top>
+     <Left> 386 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c9 </RefControl>
+     <Info> 0 </Info>
+     <Top> 255 </Top>
+     <Left> 386 </Left>
+     <Width> 15 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c10 </RefControl>
+     <Info> 0 </Info>
+     <Top> 269 </Top>
+     <Left> 386 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c11 </RefControl>
+     <Info> 0 </Info>
+     <Top> 282 </Top>
+     <Left> 386 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c12 </RefControl>
+     <Info> 0 </Info>
+     <Top> 297 </Top>
+     <Left> 386 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c13 </RefControl>
+     <Info> 0 </Info>
+     <Top> 312 </Top>
+     <Left> 386 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c14 </RefControl>
+     <Info> 0 </Info>
+     <Top> 329 </Top>
+     <Left> 386 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c15 </RefControl>
+     <Info> 0 </Info>
+     <Top> 344 </Top>
+     <Left> 386 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c16 </RefControl>
+     <Info> 0 </Info>
+     <Top> 360 </Top>
+     <Left> 385 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Label>
+     <RefControl> c17 </RefControl>
+     <Info> 0 </Info>
+     <Top> 375 </Top>
+     <Left> 386 </Left>
+     <Width> 22 </Width>
+     <Height> 13 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Label>
+    <Checkbox>
+     <RefControl> A§c2 </RefControl>
+     <Info> 0 </Info>
+     <Top> 147 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c2 </RefControl>
+     <Info> 0 </Info>
+     <Top> 147 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c3 </RefControl>
+     <Info> 0 </Info>
+     <Top> 162 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Edit>
+     <RefControl> A§nb cases cochées </RefControl>
+     <Info> 0 </Info>
+     <Top> 537 </Top>
+     <Left> 203 </Left>
+     <Width> 31 </Width>
+     <Height> 21 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Edit>
+    <Edit>
+     <RefControl> B§nb cases cochées </RefControl>
+     <Info> 0 </Info>
+     <Top> 537 </Top>
+     <Left> 368 </Left>
+     <Width> 31 </Width>
+     <Height> 21 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Edit>
+    <Checkbox>
+     <RefControl> B§c3 </RefControl>
+     <Info> 0 </Info>
+     <Top> 162 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c14 </RefControl>
+     <Info> 0 </Info>
+     <Top> 327 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c13 </RefControl>
+     <Info> 0 </Info>
+     <Top> 312 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c1 </RefControl>
+     <Info> 0 </Info>
+     <Top> 132 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c4 </RefControl>
+     <Info> 0 </Info>
+     <Top> 177 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c4 </RefControl>
+     <Info> 0 </Info>
+     <Top> 177 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c5 </RefControl>
+     <Info> 0 </Info>
+     <Top> 192 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c5 </RefControl>
+     <Info> 0 </Info>
+     <Top> 192 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c6 </RefControl>
+     <Info> 0 </Info>
+     <Top> 207 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c6 </RefControl>
+     <Info> 0 </Info>
+     <Top> 207 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c7 </RefControl>
+     <Info> 0 </Info>
+     <Top> 222 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c7 </RefControl>
+     <Info> 0 </Info>
+     <Top> 222 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c8 </RefControl>
+     <Info> 0 </Info>
+     <Top> 237 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c8 </RefControl>
+     <Info> 0 </Info>
+     <Top> 237 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c9 </RefControl>
+     <Info> 0 </Info>
+     <Top> 252 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c9 </RefControl>
+     <Info> 0 </Info>
+     <Top> 252 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c17 </RefControl>
+     <Info> 0 </Info>
+     <Top> 372 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c10 </RefControl>
+     <Info> 0 </Info>
+     <Top> 267 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c1 </RefControl>
+     <Info> 0 </Info>
+     <Top> 132 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c11 </RefControl>
+     <Info> 0 </Info>
+     <Top> 282 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c10 </RefControl>
+     <Info> 0 </Info>
+     <Top> 267 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c12 </RefControl>
+     <Info> 0 </Info>
+     <Top> 297 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c11 </RefControl>
+     <Info> 0 </Info>
+     <Top> 282 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c13 </RefControl>
+     <Info> 0 </Info>
+     <Top> 312 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c12 </RefControl>
+     <Info> 0 </Info>
+     <Top> 297 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c15 </RefControl>
+     <Info> 0 </Info>
+     <Top> 342 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c14 </RefControl>
+     <Info> 0 </Info>
+     <Top> 327 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c16 </RefControl>
+     <Info> 0 </Info>
+     <Top> 357 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c15 </RefControl>
+     <Info> 0 </Info>
+     <Top> 342 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> A§c17 </RefControl>
+     <Info> 0 </Info>
+     <Top> 372 </Top>
+     <Left> 215 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+    <Checkbox>
+     <RefControl> B§c16 </RefControl>
+     <Info> 0 </Info>
+     <Top> 357 </Top>
+     <Left> 371 </Left>
+     <Width> 15 </Width>
+     <Height> 17 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checkbox>
+   </Controls>
+  </SCREEN>
+ </SCREENS>
+
+ <BASES>
+  <BASE  name="Base de Règles">
+    <Inhibited> no </Inhibited>
+  </BASE>
+  <BASE  name="Base Règle Incoherence">
+    <PartOf> Base de Règles </PartOf>
+    <Inhibited> yes </Inhibited>
+    <RULE  name="Incoherence1">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <Param> $3:Sinistre </Param>
+     <If>
+      $1§c1=vrai
+      $2§c1=vrai
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($3§saisie cohérente=faux)
+      Message( "FAUX" )
+     </Then>
+    </RULE>
+    <RULE  name="Incoherence2">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <Param> $3:Sinistre </Param>
+     <If>
+      $1§c8=vrai
+      $2§c8=vrai
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($3§saisie cohérente=faux)
+     </Then>
+    </RULE>
+  </BASE>
+  <BASE  name="Base Calcul Torts">
+    <PartOf> Base de Règles </PartOf>
+    <Inhibited> yes </Inhibited>
+    <RULE  name="Faute Grave14">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c14=vrai
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=100)
+      Ajouter($2§torts=0)
+     </Then>
+    </RULE>
+    <RULE  name="Faute Grave17">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c17=vrai
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=100)
+      Ajouter($2§torts=0)
+     </Then>
+    </RULE>
+    <RULE  name="Faute Grave4">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c4=vrai
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=100)
+      Ajouter($2§torts=0)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule quitant un stationnement">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c2=vrai
+      $2§c15=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=100)
+      Ajouter($2§torts=0)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule en sens inverse1">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c15=vrai
+      $2§c15=faux
+      $2§c4=faux
+      $2§c14=faux
+      $2§c7=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=100)
+      Ajouter($2§torts=0)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule en sens inverse2">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c15=vrai
+      $1§c4=faux
+      $1§c14=faux
+      $1§c7=faux
+      $2§c15=vrai
+      $2§c4=faux
+      $2§c14=faux
+      $2§c7=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=50)
+      Ajouter($2§torts=50)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule entrant dans une place à sens giratoire">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c6=vrai
+      $2§c7=vrai
+      $2§c4=faux
+      $2§c14=faux
+      $2§c7=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=50)
+      Ajouter($2§torts=50)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule dans le même sens et file différente1">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c9=vrai
+      $2§c9=vrai
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=50)
+      Ajouter($2§torts=50)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule dans le même sens et file différente2">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c10=vrai
+      $2§c10=vrai
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=50)
+      Ajouter($2§torts=50)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule dans le même sens et file différente3">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c10=vrai
+      $2§c10=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=50)
+      Ajouter($2§torts=50)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule dans le même sens et même file">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c8=vrai
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=100)
+      Ajouter($2§torts=100)
+     </Then>
+    </RULE>
+  </BASE>
+ </BASES>
+
+ <METABASES>
+  <METABASE  name="Base de Méta Règles">
+    <Inhibited> yes </Inhibited>
+  </METABASE>
+ </METABASES>
+
+ <TASKS>
+  <TASK  name="Tâche Principale">
+    <Method>
+Activer(Evaluation des torts)
+    </Method>
+  </TASK>
+  <TASK  name="Evaluation des torts">
+    <PartOf> Tâche Principale </PartOf>
+    <Method>
+(Présenter(Constat) ,
+ Libérer(Base Règle Incoherence) ,
+ Libérer(Base Calcul Torts) ,
+ Trouver(Véhicule§torts) ,
+ Ecrire(Véhicule§torts) )
+    </Method>
+    <Flux>
+     <Ressource>
+       <Name> Constat </Name>
+       <Id> 1 </Id>
+       <Top> 115 </Top>
+       <Left> 79 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Base Règle Incoherence </Name>
+       <Id> 4 </Id>
+       <Top> 265 </Top>
+       <Left> 301 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Base Calcul Torts </Name>
+       <Id> 5 </Id>
+       <Top> 271 </Top>
+       <Left> 558 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Véhicule§torts </Name>
+       <Id> 6 </Id>
+       <Top> 129 </Top>
+       <Left> 743 </Left>
+     </Ressource>
+     <Inference>
+       <Name> Pas 2 </Name>
+       <Id> 2 </Id>
+       <Top> 95 </Top>
+       <Left> 243 </Left>
+     <Commentaire>
+Test de coherence
+     </Commentaire>
+     </Inference>
+     <Inference>
+       <Name> Pas 3 </Name>
+       <Id> 3 </Id>
+       <Top> 103 </Top>
+       <Left> 510 </Left>
+     </Inference>
+     <Lien>
+       <StartObj> 3 </StartObj>
+       <EndObj> 6 </EndObj>
+       <LinkType> 4 </LinkType>
+     </Lien>
+     <Lien>
+       <StartObj> 5 </StartObj>
+       <EndObj> 3 </EndObj>
+       <LinkType> 3 </LinkType>
+     </Lien>
+     <Lien>
+       <StartObj> 2 </StartObj>
+       <EndObj> 3 </EndObj>
+       <LinkType> 1 </LinkType>
+     </Lien>
+     <Lien>
+       <StartObj> 4 </StartObj>
+       <EndObj> 2 </EndObj>
+       <LinkType> 3 </LinkType>
+     </Lien>
+     <Lien>
+       <StartObj> 1 </StartObj>
+       <EndObj> 2 </EndObj>
+       <LinkType> 1 </LinkType>
+     </Lien>
+    </Flux>
+  </TASK>
+  <CONTROLTASK  name="²Traitement Incohérence">
+    <Method>
+(Message("Nous sommes en présence d'une incohérence. Le traitement est stoppé") ,
+ Arrêt )
+    </Method>
+  </CONTROLTASK>
+ </TASKS>
+</SherlockUnit>
