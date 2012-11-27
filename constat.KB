@@ -5,7 +5,7 @@
  <SherlockVersion> Version 12/2010 </SherlockVersion>
  <NAME> constat </NAME>
  <CREATION> 27/11/2012 10:32:40 </CREATION>
- <UPDATE> 27/11/2012 18:57:27 </UPDATE>
+ <UPDATE> 27/11/2012 19:29:02 </UPDATE>
 
  <CONFIGURATION>
   <TraceSystem> mini </TraceSystem>
@@ -506,7 +506,6 @@
        <ToAffirm> c14 de A est vrai </ToAffirm>
       </Boolean>
       <Monovalued  name="torts">
-       <InitialEQ> 0 </InitialEQ>
        <InitialNEQ> 25 </InitialNEQ>
        <InitialNEQ> 50 </InitialNEQ>
        <InitialNEQ> 75 </InitialNEQ>
@@ -615,7 +614,6 @@
        <ToAffirm> c14 de B est vrai </ToAffirm>
       </Boolean>
       <Monovalued  name="torts">
-       <InitialEQ> 0 </InitialEQ>
        <InitialNEQ> 25 </InitialNEQ>
        <InitialNEQ> 50 </InitialNEQ>
        <InitialNEQ> 75 </InitialNEQ>
@@ -1670,6 +1668,9 @@
      <If>
       $1§c2=vrai
       $2§c15=faux
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
       $1#$2
      </If>
      <Then>
@@ -1717,10 +1718,13 @@
      <Param> $2:Véhicule </Param>
      <If>
       $1§c6=vrai
+      $1§c4=faux
+      $1§c14=faux
+      $1§c17=faux
       $2§c7=vrai
       $2§c4=faux
       $2§c14=faux
-      $2§c7=faux
+      $2§c17=faux
       $1#$2
      </If>
      <Then>
@@ -1733,7 +1737,15 @@
      <Param> $2:Véhicule </Param>
      <If>
       $1§c9=vrai
+      $1§c10=faux
+      $1§c4=faux
+      $1§c14=faux
+      $1§c17=faux
       $2§c9=vrai
+      $2§c10=faux
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
       $1#$2
      </If>
      <Then>
@@ -1746,7 +1758,13 @@
      <Param> $2:Véhicule </Param>
      <If>
       $1§c10=vrai
+      $1§c4=faux
+      $1§c14=faux
+      $1§c17=faux
       $2§c10=vrai
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
       $1#$2
      </If>
      <Then>
@@ -1759,7 +1777,13 @@
      <Param> $2:Véhicule </Param>
      <If>
       $1§c10=vrai
+      $1§c14=faux
+      $1§c17=faux
+      $2§c10=vrai
       $2§c10=faux
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
       $1#$2
      </If>
      <Then>
@@ -1767,16 +1791,55 @@
       Ajouter($2§torts=50)
      </Then>
     </RULE>
-    <RULE  name="véhicule dans le même sens et même file">
+    <RULE  name="véhicule dans le même sens et même file1">
      <Param> $1:Véhicule </Param>
      <Param> $2:Véhicule </Param>
      <If>
       $1§c8=vrai
+      $2§c3=faux
+      $2§c5=faux
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
       $1#$2
      </If>
      <Then>
       Ajouter($1§torts=100)
-      Ajouter($2§torts=100)
+      Ajouter($2§torts=0)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule dans le même sens et même file2">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c8=vrai
+      $2§c3=vrai
+      $2§c5=faux
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=75)
+      Ajouter($2§torts=25)
+     </Then>
+    </RULE>
+    <RULE  name="véhicule dans le même sens et même file3">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <If>
+      $1§c8=vrai
+      $2§c3=faux
+      $2§c5=vrai
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=75)
+      Ajouter($2§torts=25)
      </Then>
     </RULE>
   </BASE>
@@ -1804,30 +1867,12 @@ Activer(Evaluation des torts)
  Ecrire(Véhicule§torts) )
     </Method>
     <Flux>
-     <Ressource>
-       <Name> Constat </Name>
-       <Id> 1 </Id>
-       <Top> 115 </Top>
-       <Left> 79 </Left>
-     </Ressource>
-     <Ressource>
-       <Name> Base Règle Incoherence </Name>
-       <Id> 4 </Id>
-       <Top> 265 </Top>
-       <Left> 301 </Left>
-     </Ressource>
-     <Ressource>
-       <Name> Base Calcul Torts </Name>
-       <Id> 5 </Id>
-       <Top> 271 </Top>
-       <Left> 558 </Left>
-     </Ressource>
-     <Ressource>
-       <Name> Véhicule§torts </Name>
-       <Id> 6 </Id>
-       <Top> 129 </Top>
-       <Left> 743 </Left>
-     </Ressource>
+     <Inference>
+       <Name> Pas 3 </Name>
+       <Id> 3 </Id>
+       <Top> 103 </Top>
+       <Left> 510 </Left>
+     </Inference>
      <Inference>
        <Name> Pas 2 </Name>
        <Id> 2 </Id>
@@ -1837,12 +1882,30 @@ Activer(Evaluation des torts)
 Test de coherence
      </Commentaire>
      </Inference>
-     <Inference>
-       <Name> Pas 3 </Name>
-       <Id> 3 </Id>
-       <Top> 103 </Top>
-       <Left> 510 </Left>
-     </Inference>
+     <Ressource>
+       <Name> Véhicule§torts </Name>
+       <Id> 6 </Id>
+       <Top> 129 </Top>
+       <Left> 743 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Base Calcul Torts </Name>
+       <Id> 5 </Id>
+       <Top> 271 </Top>
+       <Left> 558 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Base Règle Incoherence </Name>
+       <Id> 4 </Id>
+       <Top> 265 </Top>
+       <Left> 301 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Constat </Name>
+       <Id> 1 </Id>
+       <Top> 115 </Top>
+       <Left> 79 </Left>
+     </Ressource>
      <Lien>
        <StartObj> 3 </StartObj>
        <EndObj> 6 </EndObj>
