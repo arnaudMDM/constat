@@ -5,7 +5,7 @@
  <SherlockVersion> Version 12/2010 </SherlockVersion>
  <NAME> constat </NAME>
  <CREATION> 27/11/2012 10:32:40 </CREATION>
- <UPDATE> 27/11/2012 19:29:02 </UPDATE>
+ <UPDATE> 29/11/2012 22:06:59 </UPDATE>
 
  <CONFIGURATION>
   <TraceSystem> mini </TraceSystem>
@@ -506,10 +506,6 @@
        <ToAffirm> c14 de A est vrai </ToAffirm>
       </Boolean>
       <Monovalued  name="torts">
-       <InitialNEQ> 25 </InitialNEQ>
-       <InitialNEQ> 50 </InitialNEQ>
-       <InitialNEQ> 75 </InitialNEQ>
-       <InitialNEQ> 100 </InitialNEQ>
        <ToAsk> Que vaut  torts de A ? </ToAsk>
        <ToDeny> torts de A # ^ </ToDeny>
        <ToAffirm> torts de A = ^ </ToAffirm>
@@ -614,10 +610,6 @@
        <ToAffirm> c14 de B est vrai </ToAffirm>
       </Boolean>
       <Monovalued  name="torts">
-       <InitialNEQ> 25 </InitialNEQ>
-       <InitialNEQ> 50 </InitialNEQ>
-       <InitialNEQ> 75 </InitialNEQ>
-       <InitialNEQ> 100 </InitialNEQ>
        <ToAsk> Que vaut  torts de B ? </ToAsk>
        <ToDeny> torts de B # ^ </ToDeny>
        <ToAffirm> torts de B = ^ </ToAffirm>
@@ -1798,6 +1790,7 @@
       $1§c8=vrai
       $2§c3=faux
       $2§c5=faux
+      $2§c2=faux
       $2§c4=faux
       $2§c14=faux
       $2§c17=faux
@@ -1867,12 +1860,30 @@ Activer(Evaluation des torts)
  Ecrire(Véhicule§torts) )
     </Method>
     <Flux>
-     <Inference>
-       <Name> Pas 3 </Name>
-       <Id> 3 </Id>
-       <Top> 103 </Top>
-       <Left> 510 </Left>
-     </Inference>
+     <Ressource>
+       <Name> Constat </Name>
+       <Id> 1 </Id>
+       <Top> 115 </Top>
+       <Left> 79 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Base Règle Incoherence </Name>
+       <Id> 4 </Id>
+       <Top> 265 </Top>
+       <Left> 301 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Base Calcul Torts </Name>
+       <Id> 5 </Id>
+       <Top> 271 </Top>
+       <Left> 558 </Left>
+     </Ressource>
+     <Ressource>
+       <Name> Véhicule§torts </Name>
+       <Id> 6 </Id>
+       <Top> 129 </Top>
+       <Left> 743 </Left>
+     </Ressource>
      <Inference>
        <Name> Pas 2 </Name>
        <Id> 2 </Id>
@@ -1882,30 +1893,12 @@ Activer(Evaluation des torts)
 Test de coherence
      </Commentaire>
      </Inference>
-     <Ressource>
-       <Name> Véhicule§torts </Name>
-       <Id> 6 </Id>
-       <Top> 129 </Top>
-       <Left> 743 </Left>
-     </Ressource>
-     <Ressource>
-       <Name> Base Calcul Torts </Name>
-       <Id> 5 </Id>
-       <Top> 271 </Top>
-       <Left> 558 </Left>
-     </Ressource>
-     <Ressource>
-       <Name> Base Règle Incoherence </Name>
-       <Id> 4 </Id>
-       <Top> 265 </Top>
-       <Left> 301 </Left>
-     </Ressource>
-     <Ressource>
-       <Name> Constat </Name>
-       <Id> 1 </Id>
-       <Top> 115 </Top>
-       <Left> 79 </Left>
-     </Ressource>
+     <Inference>
+       <Name> Pas 3 </Name>
+       <Id> 3 </Id>
+       <Top> 103 </Top>
+       <Left> 510 </Left>
+     </Inference>
      <Lien>
        <StartObj> 3 </StartObj>
        <EndObj> 6 </EndObj>
