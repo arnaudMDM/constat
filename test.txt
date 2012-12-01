@@ -1,0 +1,22 @@
+  <BASE  name="Base Règle Incoherence">
+    <PartOf> Base de Règles </PartOf>
+    <Inhibited> yes </Inhibited>
+    <RULE  name="Incoherence Arret">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <Param> $3:Sinistre </Param>
+     <If>
+      c2 de A est vrai
+
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($3§saisie cohérente=faux)
+      Message( "saisie incoherente. Les deux vehicules sont a l'arret" )
+     </Then>
+    </RULE>
+</BASE>
+hello
+hello
+hello
+hello

@@ -4,12 +4,12 @@
 <SherlockUnit>
  <SherlockVersion> Version 12/2010 </SherlockVersion>
  <NAME> constat </NAME>
- <CREATION> 27/11/2012 10:32:40 </CREATION>
- <UPDATE> 29/11/2012 22:06:59 </UPDATE>
+ <CREATION> 30/11/2012 08:31:28 </CREATION>
+ <UPDATE> 30/11/2012 11:51:39 </UPDATE>
 
  <CONFIGURATION>
-  <TraceSystem> mini </TraceSystem>
-  <TraceExec> mini </TraceExec>
+  <TraceSystem> OFF </TraceSystem>
+  <TraceExec> OFF </TraceExec>
   <Autosave> OFF </Autosave>
   <Dialog>
    <LabelSuite> Suite </LabelSuite>
@@ -35,6 +35,9 @@
   <TASKDEF  name="Evaluation des torts">
     <PartOf> Tâche Principale </PartOf>
   </TASKDEF>
+  <TASKDEF  name="Maintenance">
+    <PartOf> Tâche Principale </PartOf>
+  </TASKDEF>
  </TASKDEFS>
 
  <BASEDEFS>
@@ -46,6 +49,9 @@
     <PartOf> Base de Règles </PartOf>
   </BASEDEF>
   <BASEDEF  name="Base Calcul Torts">
+    <PartOf> Base de Règles </PartOf>
+  </BASEDEF>
+  <BASEDEF  name="Base Expert">
     <PartOf> Base de Règles </PartOf>
   </BASEDEF>
  </BASEDEFS>
@@ -316,48 +322,6 @@
      </Numerical>
    </PROPERTIES>
    <ATTRIBUTES>
-    <Boolean  name="c2">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c3">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c4">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c6">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c7">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c8">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c9">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c10">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c11">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c12">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c13">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c15">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c16">
-     <From> •Circonstance </From>
-    </Boolean>
-    <Boolean  name="c17">
-     <From> •Circonstance </From>
-    </Boolean>
     <Numerical  name="nb cases cochées">
      <Min> 0 </Min>
      <Max> 18 </Max>
@@ -397,89 +361,159 @@
      <Max> 18 </Max>
        <InitialEQ> 0 </InitialEQ>
     </Numerical>
+    <Boolean  name="c3">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c3}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c6">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c6}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c4">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c4}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c7">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c7}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c8">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c8}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c9">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c9}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c10">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c10}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c11">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c11}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c12">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c12}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c13">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c13}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c15">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c15}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c17">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c17}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
     <Boolean  name="c1">
      <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c1}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c5">
      <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c5}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c14">
      <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c14}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
+    <Boolean  name="c16">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c16}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Boolean  name="c2">
+     <From> •Circonstance </From>
+     <WhenChanged>
+{Véhicule§c2}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
+    </Boolean>
+    <Multivalued  name="obs">
+     <From> •Circonstance </From>
+     <Values>
+      <Val> 
+        <Value> stationnement irrégulier </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> stationnement régulier </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> stationnement trottoir </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> franchissement ligne continue </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> franchissement ligne discontinue </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+     </Values>
+    </Multivalued>
    </ATTRIBUTES>
    <INSTANCES>
     <INSTANCE  name="A"> 
      <ATTRIBUTES>
-      <Boolean  name="c2">
-       <ToAsk> Est ce que  c2 de A ? </ToAsk>
-       <ToDeny> c2 de A est faux </ToDeny>
-       <ToAffirm> c2 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c3">
-       <ToAsk> Est ce que  c3 de A ? </ToAsk>
-       <ToDeny> c3 de A est faux </ToDeny>
-       <ToAffirm> c3 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c4">
-       <ToAsk> Est ce que  c4 de A ? </ToAsk>
-       <ToDeny> c4 de A est faux </ToDeny>
-       <ToAffirm> c4 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c6">
-       <ToAsk> Est ce que  c6 de A ? </ToAsk>
-       <ToDeny> c6 de A est faux </ToDeny>
-       <ToAffirm> c6 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c7">
-       <ToAsk> Est ce que  c7 de A ? </ToAsk>
-       <ToDeny> c7 de A est faux </ToDeny>
-       <ToAffirm> c7 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c8">
-       <ToAsk> Est ce que  c8 de A ? </ToAsk>
-       <ToDeny> c8 de A est faux </ToDeny>
-       <ToAffirm> c8 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c9">
-       <ToAsk> Est ce que  c9 de A ? </ToAsk>
-       <ToDeny> c9 de A est faux </ToDeny>
-       <ToAffirm> c9 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c10">
-       <ToAsk> Est ce que  c10 de A ? </ToAsk>
-       <ToDeny> c10 de A est faux </ToDeny>
-       <ToAffirm> c10 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c11">
-       <ToAsk> Est ce que  c11 de A ? </ToAsk>
-       <ToDeny> c11 de A est faux </ToDeny>
-       <ToAffirm> c11 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c12">
-       <ToAsk> Est ce que  c12 de A ? </ToAsk>
-       <ToDeny> c12 de A est faux </ToDeny>
-       <ToAffirm> c12 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c13">
-       <ToAsk> Est ce que  c13 de A ? </ToAsk>
-       <ToDeny> c13 de A est faux </ToDeny>
-       <ToAffirm> c13 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c15">
-       <ToAsk> Est ce que  c15 de A ? </ToAsk>
-       <ToDeny> c15 de A est faux </ToDeny>
-       <ToAffirm> c15 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c16">
-       <ToAsk> Est ce que  c16 de A ? </ToAsk>
-       <ToDeny> c16 de A est faux </ToDeny>
-       <ToAffirm> c16 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c17">
-       <ToAsk> Est ce que  c17 de A ? </ToAsk>
-       <ToDeny> c17 de A est faux </ToDeny>
-       <ToAffirm> c17 de A est vrai </ToAffirm>
-      </Boolean>
       <Numerical  name="nb cases cochées">
        <InitialEQ> 0 </InitialEQ>
        <ToAsk> Que vaut  nb cases cochées de A ? </ToAsk>
@@ -490,100 +524,173 @@
        <ToAsk> Que vaut  compteur de cases de A ? </ToAsk>
        <ToAffirm> compteur de cases de A = ^ </ToAffirm>
       </Numerical>
-      <Boolean  name="c1">
-       <ToAsk> Est ce que  c1 de A ? </ToAsk>
-       <ToDeny> c1 de A est faux </ToDeny>
-       <ToAffirm> c1 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c5">
-       <ToAsk> Est ce que  c5 de A ? </ToAsk>
-       <ToDeny> c5 de A est faux </ToDeny>
-       <ToAffirm> c5 de A est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c14">
-       <ToAsk> Est ce que  c14 de A ? </ToAsk>
-       <ToDeny> c14 de A est faux </ToDeny>
-       <ToAffirm> c14 de A est vrai </ToAffirm>
-      </Boolean>
       <Monovalued  name="torts">
        <ToAsk> Que vaut  torts de A ? </ToAsk>
        <ToDeny> torts de A # ^ </ToDeny>
        <ToAffirm> torts de A = ^ </ToAffirm>
       </Monovalued>
+      <Boolean  name="c3">
+       <WhenChanged>
+{A§c3}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c3 de A ? </ToAsk>
+       <ToDeny> $A§c3 = faux </ToDeny>
+       <ToAffirm> $A§c3 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c6">
+       <WhenChanged>
+{A§c6}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c6 de A ? </ToAsk>
+       <ToDeny> $A§c6 = faux </ToDeny>
+       <ToAffirm> $A§c6 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c4">
+       <WhenChanged>
+{A§c4}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c4 de A ? </ToAsk>
+       <ToDeny> $A§c4 = faux </ToDeny>
+       <ToAffirm> $A§c4 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c7">
+       <WhenChanged>
+{A§c7}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c7 de A ? </ToAsk>
+       <ToDeny> $A§c7 = faux </ToDeny>
+       <ToAffirm> $A§c7 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c8">
+       <WhenChanged>
+{A§c8}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c8 de A ? </ToAsk>
+       <ToDeny> $A§c8 = faux </ToDeny>
+       <ToAffirm> $A§c8 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c9">
+       <WhenChanged>
+{A§c9}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c9 de A ? </ToAsk>
+       <ToDeny> $A§c9 = faux </ToDeny>
+       <ToAffirm> $A§c9 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c10">
+       <WhenChanged>
+{A§c10}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c10 de A ? </ToAsk>
+       <ToDeny> $A§c10 = faux </ToDeny>
+       <ToAffirm> $A§c10 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c11">
+       <WhenChanged>
+{A§c11}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c11 de A ? </ToAsk>
+       <ToDeny> $A§c11 = faux </ToDeny>
+       <ToAffirm> $A§c11 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c12">
+       <WhenChanged>
+{A§c12}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c12 de A ? </ToAsk>
+       <ToDeny> $A§c12 = faux </ToDeny>
+       <ToAffirm> $A§c12 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c13">
+       <WhenChanged>
+{A§c13}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c13 de A ? </ToAsk>
+       <ToDeny> $A§c13 = faux </ToDeny>
+       <ToAffirm> $A§c13 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c15">
+       <WhenChanged>
+{A§c15}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c15 de A ? </ToAsk>
+       <ToDeny> $A§c15 = faux </ToDeny>
+       <ToAffirm> $A§c15 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c17">
+       <WhenChanged>
+{A§c17}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c17 de A ? </ToAsk>
+       <ToDeny> $A§c17 = faux </ToDeny>
+       <ToAffirm> $A§c17 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c1">
+       <WhenChanged>
+{A§c1}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c1 de A ? </ToAsk>
+       <ToDeny> $A§c1 = vrai </ToDeny>
+       <ToAffirm> $A§c1 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c5">
+       <WhenChanged>
+{A§c5}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c5 de A ? </ToAsk>
+       <ToDeny> $A§c5 = faux </ToDeny>
+       <ToAffirm> $A§c5 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c14">
+       <WhenChanged>
+{A§c14}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c14 de A ? </ToAsk>
+       <ToDeny> $A§c14 = faux </ToDeny>
+       <ToAffirm> $A§c14 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c16">
+       <WhenChanged>
+{A§c16}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c16 de A ? </ToAsk>
+       <ToDeny> $A§c16 = faux </ToDeny>
+       <ToAffirm> $A§c16 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c2">
+       <WhenChanged>
+{A§c2}
+   Calculer(A§compteur de cases = A§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c2 de A ? </ToAsk>
+       <ToDeny> $A§c2 = faux </ToDeny>
+       <ToAffirm> $A§c2 = vrai </ToAffirm>
+      </Boolean>
+      <Multivalued  name="obs">
+       <ToAsk> Que vaut  obs de A ? </ToAsk>
+       <ToDeny> obs de A # ^ </ToDeny>
+       <ToAffirm> obs de A = ^ </ToAffirm>
+      </Multivalued>
      </ATTRIBUTES>
     </INSTANCE> 
     <INSTANCE  name="B"> 
      <ATTRIBUTES>
-      <Boolean  name="c2">
-       <ToAsk> Est ce que  c2 de B ? </ToAsk>
-       <ToDeny> c2 de B est faux </ToDeny>
-       <ToAffirm> c2 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c3">
-       <ToAsk> Est ce que  c3 de B ? </ToAsk>
-       <ToDeny> c3 de B est faux </ToDeny>
-       <ToAffirm> c3 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c4">
-       <ToAsk> Est ce que  c4 de B ? </ToAsk>
-       <ToDeny> c4 de B est faux </ToDeny>
-       <ToAffirm> c4 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c6">
-       <ToAsk> Est ce que  c6 de B ? </ToAsk>
-       <ToDeny> c6 de B est faux </ToDeny>
-       <ToAffirm> c6 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c7">
-       <ToAsk> Est ce que  c7 de B ? </ToAsk>
-       <ToDeny> c7 de B est faux </ToDeny>
-       <ToAffirm> c7 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c8">
-       <ToAsk> Est ce que  c8 de B ? </ToAsk>
-       <ToDeny> c8 de B est faux </ToDeny>
-       <ToAffirm> c8 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c9">
-       <ToAsk> Est ce que  c9 de B ? </ToAsk>
-       <ToDeny> c9 de B est faux </ToDeny>
-       <ToAffirm> c9 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c10">
-       <ToAsk> Est ce que  c10 de B ? </ToAsk>
-       <ToDeny> c10 de B est faux </ToDeny>
-       <ToAffirm> c10 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c11">
-       <ToAsk> Est ce que  c11 de B ? </ToAsk>
-       <ToDeny> c11 de B est faux </ToDeny>
-       <ToAffirm> c11 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c12">
-       <ToAsk> Est ce que  c12 de B ? </ToAsk>
-       <ToDeny> c12 de B est faux </ToDeny>
-       <ToAffirm> c12 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c13">
-       <ToAsk> Est ce que  c13 de B ? </ToAsk>
-       <ToDeny> c13 de B est faux </ToDeny>
-       <ToAffirm> c13 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c15">
-       <ToAsk> Est ce que  c15 de B ? </ToAsk>
-       <ToDeny> c15 de B est faux </ToDeny>
-       <ToAffirm> c15 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c16">
-       <ToAsk> Est ce que  c16 de B ? </ToAsk>
-       <ToDeny> c16 de B est faux </ToDeny>
-       <ToAffirm> c16 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c17">
-       <ToAsk> Est ce que  c17 de B ? </ToAsk>
-       <ToDeny> c17 de B est faux </ToDeny>
-       <ToAffirm> c17 de B est vrai </ToAffirm>
-      </Boolean>
       <Numerical  name="nb cases cochées">
        <InitialEQ> 0 </InitialEQ>
        <ToAsk> Que vaut  nb cases cochées de B ? </ToAsk>
@@ -594,26 +701,169 @@
        <ToAsk> Que vaut  compteur de cases de B ? </ToAsk>
        <ToAffirm> compteur de cases de B = ^ </ToAffirm>
       </Numerical>
-      <Boolean  name="c1">
-       <ToAsk> Est ce que  c1 de B ? </ToAsk>
-       <ToDeny> c1 de B est faux </ToDeny>
-       <ToAffirm> c1 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c5">
-       <ToAsk> Est ce que  c5 de B ? </ToAsk>
-       <ToDeny> c5 de B est faux </ToDeny>
-       <ToAffirm> c5 de B est vrai </ToAffirm>
-      </Boolean>
-      <Boolean  name="c14">
-       <ToAsk> Est ce que  c14 de B ? </ToAsk>
-       <ToDeny> c14 de B est faux </ToDeny>
-       <ToAffirm> c14 de B est vrai </ToAffirm>
-      </Boolean>
       <Monovalued  name="torts">
        <ToAsk> Que vaut  torts de B ? </ToAsk>
        <ToDeny> torts de B # ^ </ToDeny>
        <ToAffirm> torts de B = ^ </ToAffirm>
       </Monovalued>
+      <Boolean  name="c3">
+       <WhenChanged>
+{B§c3}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c3 de B ? </ToAsk>
+       <ToDeny> $B§c3 = faux </ToDeny>
+       <ToAffirm> $B§c3 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c6">
+       <WhenChanged>
+{B§c6}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c6 de B ? </ToAsk>
+       <ToDeny> $B§c6 = faux </ToDeny>
+       <ToAffirm> $B§c6 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c4">
+       <WhenChanged>
+{B§c4}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c4 de B ? </ToAsk>
+       <ToDeny> $B§c4 = faux </ToDeny>
+       <ToAffirm> $B§c4 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c7">
+       <WhenChanged>
+{B§c7}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c7 de B ? </ToAsk>
+       <ToDeny> $B§c7 = faux </ToDeny>
+       <ToAffirm> $B§c7 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c8">
+       <WhenChanged>
+{B§c8}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c8 de B ? </ToAsk>
+       <ToDeny> $B§c8 = faux </ToDeny>
+       <ToAffirm> $B§c8 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c9">
+       <WhenChanged>
+{B§c9}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c9 de B ? </ToAsk>
+       <ToDeny> $B§c9 = faux </ToDeny>
+       <ToAffirm> $B§c9 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c10">
+       <WhenChanged>
+{B§c10}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c10 de B ? </ToAsk>
+       <ToDeny> $B§c10 = faux </ToDeny>
+       <ToAffirm> $B§c10 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c11">
+       <WhenChanged>
+{B§c11}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c11 de B ? </ToAsk>
+       <ToDeny> $B§c11 = faux </ToDeny>
+       <ToAffirm> $B§c11 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c12">
+       <WhenChanged>
+{B§c12}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c12 de B ? </ToAsk>
+       <ToDeny> $B§c12 = faux </ToDeny>
+       <ToAffirm> $B§c12 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c13">
+       <WhenChanged>
+{B§c13}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c13 de B ? </ToAsk>
+       <ToDeny> $B§c13 = faux </ToDeny>
+       <ToAffirm> $B§c13 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c15">
+       <WhenChanged>
+{B§c15}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c15 de B ? </ToAsk>
+       <ToDeny> $B§c15 = faux </ToDeny>
+       <ToAffirm> $B§c15 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c17">
+       <WhenChanged>
+{B§c17}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c17 de B ? </ToAsk>
+       <ToDeny> $B§c17 = faux </ToDeny>
+       <ToAffirm> $B§c17 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c1">
+       <WhenChanged>
+{B§c1}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c1 de B ? </ToAsk>
+       <ToDeny> $B§c1 = faux </ToDeny>
+       <ToAffirm> $B§c1 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c5">
+       <WhenChanged>
+{B§c5}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c5 de B ? </ToAsk>
+       <ToDeny> $B§c5 = faux </ToDeny>
+       <ToAffirm> $B§c5 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c14">
+       <WhenChanged>
+{B§c14}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c14 de B ? </ToAsk>
+       <ToDeny> $B§c14 = faux </ToDeny>
+       <ToAffirm> $B§c14 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c16">
+       <WhenChanged>
+{B§c16}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c16 de B ? </ToAsk>
+       <ToDeny> $B§c16 = faux </ToDeny>
+       <ToAffirm> $B§c16 = vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c2">
+       <WhenChanged>
+{B§c2}
+   Calculer(B§compteur de cases = B§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c2 de B ? </ToAsk>
+       <ToDeny> $B§c2 = faux </ToDeny>
+       <ToAffirm> $B§c2 = vrai </ToAffirm>
+      </Boolean>
+      <Multivalued  name="obs">
+       <ToAsk> Que vaut  obs de B ? </ToAsk>
+       <ToDeny> obs de B # ^ </ToDeny>
+       <ToAffirm> obs de B = ^ </ToAffirm>
+      </Multivalued>
      </ATTRIBUTES>
     </INSTANCE> 
    </INSTANCES>
@@ -683,462 +933,341 @@
    </PROPERTIES>
    <ATTRIBUTES>
     <Boolean  name="c1">
+     <WhenChanged>
+{Véhicule§c1}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c2">
+     <WhenChanged>
+{Véhicule§c2}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c3">
+     <WhenChanged>
+{Véhicule§c3}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c4">
+     <WhenChanged>
+{Véhicule§c4}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c5">
+     <WhenChanged>
+{Véhicule§c5}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c6">
+     <WhenChanged>
+{Véhicule§c6}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c7">
+     <WhenChanged>
+{Véhicule§c7}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c8">
+     <WhenChanged>
+{Véhicule§c8}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c9">
+     <WhenChanged>
+{Véhicule§c9}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c10">
+     <WhenChanged>
+{Véhicule§c10}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c11">
+     <WhenChanged>
+{Véhicule§c11}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c12">
+     <WhenChanged>
+{Véhicule§c12}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c13">
+     <WhenChanged>
+{Véhicule§c13}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c14">
+     <WhenChanged>
+{Véhicule§c14}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c15">
+     <WhenChanged>
+{Véhicule§c15}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c16">
+     <WhenChanged>
+{Véhicule§c16}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
     <Boolean  name="c17">
+     <WhenChanged>
+{Véhicule§c17}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+     </WhenChanged>
     </Boolean>
+    <Monovalued  name="lieu">
+     <Values>
+      <Val> 
+        <Value> agglomération </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> non agglomération </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+     </Values>
+    </Monovalued>
+    <Multivalued  name="obs">
+     <Values>
+      <Val> 
+        <Value> stationnement irrégulier </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> stationnement régulier </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> stationnement trottoir </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> franchissement ligne continue </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+      <Val> 
+        <Value> franchissement ligne discontinue </Value>
+        <Left> 0 </Left>
+        <Top> 0 </Top>
+      </Val> 
+     </Values>
+    </Multivalued>
    </ATTRIBUTES>
+   <INSTANCES>
+    <INSTANCE  name="c"> 
+     <ATTRIBUTES>
+      <Monovalued  name="lieu">
+       <ToAsk> Que vaut  lieu de c ? </ToAsk>
+       <ToDeny> lieu de c # ^ </ToDeny>
+       <ToAffirm> lieu de c = ^ </ToAffirm>
+      </Monovalued>
+      <Multivalued  name="obs">
+       <ToAsk> Que vaut  obs de c ? </ToAsk>
+       <ToDeny> obs de c # ^ </ToDeny>
+       <ToAffirm> obs de c = ^ </ToAffirm>
+      </Multivalued>
+      <Boolean  name="c3">
+       <WhenChanged>
+{Véhicule§c3}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c3 de c ? </ToAsk>
+       <ToDeny> c3 de c est faux </ToDeny>
+       <ToAffirm> c3 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c6">
+       <WhenChanged>
+{Véhicule§c6}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c6 de c ? </ToAsk>
+       <ToDeny> c6 de c est faux </ToDeny>
+       <ToAffirm> c6 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c4">
+       <WhenChanged>
+{Véhicule§c4}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c4 de c ? </ToAsk>
+       <ToDeny> c4 de c est faux </ToDeny>
+       <ToAffirm> c4 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c7">
+       <WhenChanged>
+{Véhicule§c7}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c7 de c ? </ToAsk>
+       <ToDeny> c7 de c est faux </ToDeny>
+       <ToAffirm> c7 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c8">
+       <WhenChanged>
+{Véhicule§c8}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c8 de c ? </ToAsk>
+       <ToDeny> c8 de c est faux </ToDeny>
+       <ToAffirm> c8 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c9">
+       <WhenChanged>
+{Véhicule§c9}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c9 de c ? </ToAsk>
+       <ToDeny> c9 de c est faux </ToDeny>
+       <ToAffirm> c9 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c10">
+       <WhenChanged>
+{Véhicule§c10}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c10 de c ? </ToAsk>
+       <ToDeny> c10 de c est faux </ToDeny>
+       <ToAffirm> c10 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c11">
+       <WhenChanged>
+{Véhicule§c11}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c11 de c ? </ToAsk>
+       <ToDeny> c11 de c est faux </ToDeny>
+       <ToAffirm> c11 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c12">
+       <WhenChanged>
+{Véhicule§c12}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c12 de c ? </ToAsk>
+       <ToDeny> c12 de c est faux </ToDeny>
+       <ToAffirm> c12 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c13">
+       <WhenChanged>
+{Véhicule§c13}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c13 de c ? </ToAsk>
+       <ToDeny> c13 de c est faux </ToDeny>
+       <ToAffirm> c13 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c15">
+       <WhenChanged>
+{Véhicule§c15}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c15 de c ? </ToAsk>
+       <ToDeny> c15 de c est faux </ToDeny>
+       <ToAffirm> c15 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c17">
+       <WhenChanged>
+{Véhicule§c17}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c17 de c ? </ToAsk>
+       <ToDeny> c17 de c est faux </ToDeny>
+       <ToAffirm> c17 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c1">
+       <WhenChanged>
+{Véhicule§c1}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c1 de c ? </ToAsk>
+       <ToDeny> c1 de c est faux </ToDeny>
+       <ToAffirm> c1 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c5">
+       <WhenChanged>
+{Véhicule§c5}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c5 de c ? </ToAsk>
+       <ToDeny> c5 de c est faux </ToDeny>
+       <ToAffirm> c5 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c14">
+       <WhenChanged>
+{Véhicule§c14}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c14 de c ? </ToAsk>
+       <ToDeny> c14 de c est faux </ToDeny>
+       <ToAffirm> c14 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c16">
+       <WhenChanged>
+{Véhicule§c16}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c16 de c ? </ToAsk>
+       <ToDeny> c16 de c est faux </ToDeny>
+       <ToAffirm> c16 de c est vrai </ToAffirm>
+      </Boolean>
+      <Boolean  name="c2">
+       <WhenChanged>
+{Véhicule§c2}
+   Calculer(Véhicule§compteur de cases = Véhicule§compteur de cases+1)
+       </WhenChanged>
+       <ToAsk> Est ce que  c2 de c ? </ToAsk>
+       <ToDeny> c2 de c est faux </ToDeny>
+       <ToAffirm> c2 de c est vrai </ToAffirm>
+      </Boolean>
+     </ATTRIBUTES>
+    </INSTANCE> 
+   </INSTANCES>
   </CONCEPT>
  </CONCEPTS>
+
+ <REPORTS>
+  <REPORT  name="nouvelle règle incohérence">
+   <Footnote>   1:Véhicule§c1;  0;2;G </Footnote>
+   <Footnote>   2:Véhicule§c2;  0;2;G </Footnote>
+  </REPORT>
+ </REPORTS>
 
  <SCREENS>
   <SCREEN  name="Constat">
    <ScreenColor> #00FFFBF0 </ScreenColor>
-   <Background> \\Servif-home\fic_eleves\Espace Pedagogique\4IF\Modeles et Outils Mathematiques\Modelisation cognitive\Projet\FicheConstat.JPG </Background>
+   <Background> \\servif-home\Profil$\amerydemon\Documents\constatBis\FicheConstat.JPG </Background>
    <ScreenWidth> 609 </ScreenWidth>
-   <ScreenHeight> 865 </ScreenHeight>
+   <ScreenHeight> 745 </ScreenHeight>
    <Controls>
-    <Label>
-     <RefControl> c4 </RefControl>
-     <Info> 0 </Info>
-     <Top> 178 </Top>
-     <Left> 198 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c1 </RefControl>
-     <Info> 0 </Info>
-     <Top> 136 </Top>
-     <Left> 198 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c2 </RefControl>
-     <Info> 0 </Info>
-     <Top> 152 </Top>
-     <Left> 198 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c3 </RefControl>
-     <Info> 0 </Info>
-     <Top> 166 </Top>
-     <Left> 198 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c5 </RefControl>
-     <Info> 0 </Info>
-     <Top> 195 </Top>
-     <Left> 199 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c6 </RefControl>
-     <Info> 0 </Info>
-     <Top> 210 </Top>
-     <Left> 198 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c7 </RefControl>
-     <Info> 0 </Info>
-     <Top> 225 </Top>
-     <Left> 198 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c8 </RefControl>
-     <Info> 0 </Info>
-     <Top> 239 </Top>
-     <Left> 198 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c9 </RefControl>
-     <Info> 0 </Info>
-     <Top> 254 </Top>
-     <Left> 199 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c10 </RefControl>
-     <Info> 0 </Info>
-     <Top> 270 </Top>
-     <Left> 192 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c11 </RefControl>
-     <Info> 0 </Info>
-     <Top> 285 </Top>
-     <Left> 193 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c12 </RefControl>
-     <Info> 0 </Info>
-     <Top> 300 </Top>
-     <Left> 191 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c13 </RefControl>
-     <Info> 0 </Info>
-     <Top> 315 </Top>
-     <Left> 190 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c14 </RefControl>
-     <Info> 0 </Info>
-     <Top> 329 </Top>
-     <Left> 191 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c15 </RefControl>
-     <Info> 0 </Info>
-     <Top> 344 </Top>
-     <Left> 191 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c16 </RefControl>
-     <Info> 0 </Info>
-     <Top> 360 </Top>
-     <Left> 190 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c17 </RefControl>
-     <Info> 0 </Info>
-     <Top> 373 </Top>
-     <Left> 191 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c1 </RefControl>
-     <Info> 0 </Info>
-     <Top> 131 </Top>
-     <Left> 386 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c2 </RefControl>
-     <Info> 0 </Info>
-     <Top> 149 </Top>
-     <Left> 386 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c3 </RefControl>
-     <Info> 0 </Info>
-     <Top> 165 </Top>
-     <Left> 387 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c4 </RefControl>
-     <Info> 0 </Info>
-     <Top> 181 </Top>
-     <Left> 385 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c5 </RefControl>
-     <Info> 0 </Info>
-     <Top> 196 </Top>
-     <Left> 386 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c6 </RefControl>
-     <Info> 0 </Info>
-     <Top> 211 </Top>
-     <Left> 388 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c7 </RefControl>
-     <Info> 0 </Info>
-     <Top> 225 </Top>
-     <Left> 388 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c8 </RefControl>
-     <Info> 0 </Info>
-     <Top> 240 </Top>
-     <Left> 386 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c9 </RefControl>
-     <Info> 0 </Info>
-     <Top> 255 </Top>
-     <Left> 386 </Left>
-     <Width> 15 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c10 </RefControl>
-     <Info> 0 </Info>
-     <Top> 269 </Top>
-     <Left> 386 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c11 </RefControl>
-     <Info> 0 </Info>
-     <Top> 282 </Top>
-     <Left> 386 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c12 </RefControl>
-     <Info> 0 </Info>
-     <Top> 297 </Top>
-     <Left> 386 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c13 </RefControl>
-     <Info> 0 </Info>
-     <Top> 312 </Top>
-     <Left> 386 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c14 </RefControl>
-     <Info> 0 </Info>
-     <Top> 329 </Top>
-     <Left> 386 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c15 </RefControl>
-     <Info> 0 </Info>
-     <Top> 344 </Top>
-     <Left> 386 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c16 </RefControl>
-     <Info> 0 </Info>
-     <Top> 360 </Top>
-     <Left> 385 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
-    <Label>
-     <RefControl> c17 </RefControl>
-     <Info> 0 </Info>
-     <Top> 375 </Top>
-     <Left> 386 </Left>
-     <Width> 22 </Width>
-     <Height> 13 </Height>
-     <Police> MS Sans Serif </Police>
-     <Size> 8 </Size>
-     <Color> #00000000 </Color>
-     <Style> G </Style>
-    </Label>
     <Checkbox>
      <RefControl> A§c2 </RefControl>
      <Info> 0 </Info>
-     <Top> 147 </Top>
+     <Top> 144 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1150,7 +1279,7 @@
     <Checkbox>
      <RefControl> B§c2 </RefControl>
      <Info> 0 </Info>
-     <Top> 147 </Top>
+     <Top> 144 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1162,7 +1291,7 @@
     <Checkbox>
      <RefControl> A§c3 </RefControl>
      <Info> 0 </Info>
-     <Top> 162 </Top>
+     <Top> 156 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1174,7 +1303,7 @@
     <Edit>
      <RefControl> A§nb cases cochées </RefControl>
      <Info> 0 </Info>
-     <Top> 537 </Top>
+     <Top> 462 </Top>
      <Left> 203 </Left>
      <Width> 31 </Width>
      <Height> 21 </Height>
@@ -1186,7 +1315,7 @@
     <Edit>
      <RefControl> B§nb cases cochées </RefControl>
      <Info> 0 </Info>
-     <Top> 537 </Top>
+     <Top> 462 </Top>
      <Left> 368 </Left>
      <Width> 31 </Width>
      <Height> 21 </Height>
@@ -1198,7 +1327,7 @@
     <Checkbox>
      <RefControl> B§c3 </RefControl>
      <Info> 0 </Info>
-     <Top> 162 </Top>
+     <Top> 159 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1210,7 +1339,7 @@
     <Checkbox>
      <RefControl> A§c14 </RefControl>
      <Info> 0 </Info>
-     <Top> 327 </Top>
+     <Top> 375 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1222,7 +1351,7 @@
     <Checkbox>
      <RefControl> B§c13 </RefControl>
      <Info> 0 </Info>
-     <Top> 312 </Top>
+     <Top> 360 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1234,7 +1363,7 @@
     <Checkbox>
      <RefControl> A§c1 </RefControl>
      <Info> 0 </Info>
-     <Top> 132 </Top>
+     <Top> 129 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1258,7 +1387,7 @@
     <Checkbox>
      <RefControl> A§c4 </RefControl>
      <Info> 0 </Info>
-     <Top> 177 </Top>
+     <Top> 171 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1294,7 +1423,7 @@
     <Checkbox>
      <RefControl> B§c6 </RefControl>
      <Info> 0 </Info>
-     <Top> 207 </Top>
+     <Top> 219 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1306,7 +1435,7 @@
     <Checkbox>
      <RefControl> A§c6 </RefControl>
      <Info> 0 </Info>
-     <Top> 207 </Top>
+     <Top> 219 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1318,7 +1447,7 @@
     <Checkbox>
      <RefControl> B§c7 </RefControl>
      <Info> 0 </Info>
-     <Top> 222 </Top>
+     <Top> 243 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1330,7 +1459,7 @@
     <Checkbox>
      <RefControl> A§c7 </RefControl>
      <Info> 0 </Info>
-     <Top> 222 </Top>
+     <Top> 243 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1342,7 +1471,7 @@
     <Checkbox>
      <RefControl> B§c8 </RefControl>
      <Info> 0 </Info>
-     <Top> 237 </Top>
+     <Top> 264 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1354,7 +1483,7 @@
     <Checkbox>
      <RefControl> A§c8 </RefControl>
      <Info> 0 </Info>
-     <Top> 237 </Top>
+     <Top> 267 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1366,7 +1495,7 @@
     <Checkbox>
      <RefControl> B§c9 </RefControl>
      <Info> 0 </Info>
-     <Top> 252 </Top>
+     <Top> 297 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1378,7 +1507,7 @@
     <Checkbox>
      <RefControl> A§c9 </RefControl>
      <Info> 0 </Info>
-     <Top> 252 </Top>
+     <Top> 297 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1390,7 +1519,7 @@
     <Checkbox>
      <RefControl> B§c17 </RefControl>
      <Info> 0 </Info>
-     <Top> 372 </Top>
+     <Top> 441 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1402,7 +1531,7 @@
     <Checkbox>
      <RefControl> A§c10 </RefControl>
      <Info> 0 </Info>
-     <Top> 267 </Top>
+     <Top> 318 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1414,7 +1543,7 @@
     <Checkbox>
      <RefControl> B§c1 </RefControl>
      <Info> 0 </Info>
-     <Top> 132 </Top>
+     <Top> 129 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1426,7 +1555,7 @@
     <Checkbox>
      <RefControl> A§c11 </RefControl>
      <Info> 0 </Info>
-     <Top> 282 </Top>
+     <Top> 333 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1438,7 +1567,7 @@
     <Checkbox>
      <RefControl> B§c10 </RefControl>
      <Info> 0 </Info>
-     <Top> 267 </Top>
+     <Top> 318 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1450,7 +1579,7 @@
     <Checkbox>
      <RefControl> A§c12 </RefControl>
      <Info> 0 </Info>
-     <Top> 297 </Top>
+     <Top> 345 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1462,7 +1591,7 @@
     <Checkbox>
      <RefControl> B§c11 </RefControl>
      <Info> 0 </Info>
-     <Top> 282 </Top>
+     <Top> 333 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1474,7 +1603,7 @@
     <Checkbox>
      <RefControl> A§c13 </RefControl>
      <Info> 0 </Info>
-     <Top> 312 </Top>
+     <Top> 360 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1486,7 +1615,7 @@
     <Checkbox>
      <RefControl> B§c12 </RefControl>
      <Info> 0 </Info>
-     <Top> 297 </Top>
+     <Top> 345 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1498,7 +1627,7 @@
     <Checkbox>
      <RefControl> A§c15 </RefControl>
      <Info> 0 </Info>
-     <Top> 342 </Top>
+     <Top> 390 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1510,7 +1639,7 @@
     <Checkbox>
      <RefControl> B§c14 </RefControl>
      <Info> 0 </Info>
-     <Top> 327 </Top>
+     <Top> 375 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1522,7 +1651,7 @@
     <Checkbox>
      <RefControl> A§c16 </RefControl>
      <Info> 0 </Info>
-     <Top> 357 </Top>
+     <Top> 420 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1534,7 +1663,7 @@
     <Checkbox>
      <RefControl> B§c15 </RefControl>
      <Info> 0 </Info>
-     <Top> 342 </Top>
+     <Top> 390 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1546,7 +1675,7 @@
     <Checkbox>
      <RefControl> A§c17 </RefControl>
      <Info> 0 </Info>
-     <Top> 372 </Top>
+     <Top> 441 </Top>
      <Left> 215 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1558,7 +1687,7 @@
     <Checkbox>
      <RefControl> B§c16 </RefControl>
      <Info> 0 </Info>
-     <Top> 357 </Top>
+     <Top> 417 </Top>
      <Left> 371 </Left>
      <Width> 15 </Width>
      <Height> 17 </Height>
@@ -1567,6 +1696,30 @@
      <Color> #00000000 </Color>
      <Style> G </Style>
     </Checkbox>
+    <Combo>
+     <RefControl> c§lieu </RefControl>
+     <Info> 0 </Info>
+     <Top> 21 </Top>
+     <Left> 221 </Left>
+     <Width> 160 </Width>
+     <Height> 21 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Combo>
+    <Checklist>
+     <RefControl> c§obs </RefControl>
+     <Info> 0 </Info>
+     <Top> 693 </Top>
+     <Left> 8 </Left>
+     <Width> 181 </Width>
+     <Height> 40 </Height>
+     <Police> MS Sans Serif </Police>
+     <Size> 8 </Size>
+     <Color> #00000000 </Color>
+     <Style> G </Style>
+    </Checklist>
    </Controls>
   </SCREEN>
  </SCREENS>
@@ -1578,7 +1731,7 @@
   <BASE  name="Base Règle Incoherence">
     <PartOf> Base de Règles </PartOf>
     <Inhibited> yes </Inhibited>
-    <RULE  name="Incoherence1">
+    <RULE  name="Incoherence Arret">
      <Param> $1:Véhicule </Param>
      <Param> $2:Véhicule </Param>
      <Param> $3:Sinistre </Param>
@@ -1589,10 +1742,23 @@
      </If>
      <Then>
       Ajouter($3§saisie cohérente=faux)
-      Message( "FAUX" )
+      Message( "saisie incoherente. Les deux vehicules sont a l'arret" )
      </Then>
     </RULE>
-    <RULE  name="Incoherence2">
+    <RULE  name="Incoherence Arret1">
+     <Param> $1:Véhicule </Param>
+     <Param> $3:Sinistre </Param>
+     <If>
+      $1§c2=vrai
+      $1§c3=vrai
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($3§saisie cohérente=faux)
+      Message( "saisie incoherente." )
+     </Then>
+    </RULE>
+    <RULE  name="Incoherence Sens">
      <Param> $1:Véhicule </Param>
      <Param> $2:Véhicule </Param>
      <Param> $3:Sinistre </Param>
@@ -1603,13 +1769,27 @@
      </If>
      <Then>
       Ajouter($3§saisie cohérente=faux)
+      Message( "saisie incoherente. Les deux vehicules disent s'etre rentré dedans par derrière" )
+      Arrêt
+     </Then>
+    </RULE>
+    <RULE  name="nb cases chochées">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Sinistre </Param>
+     <If>
+      $1§nb cases cochées&lt;>$1§compteur de cases
+     </If>
+     <Then>
+      Ajouter($2§saisie cohérente=faux)
+      Message( "saisie incoherente. Mauvais nombre de cases cochées" )
+      Arrêt
      </Then>
     </RULE>
   </BASE>
   <BASE  name="Base Calcul Torts">
     <PartOf> Base de Règles </PartOf>
     <Inhibited> yes </Inhibited>
-    <RULE  name="Faute Grave14">
+    <RULE  name="faute grave reculait">
      <Param> $1:Véhicule </Param>
      <Param> $2:Véhicule </Param>
      <If>
@@ -1624,7 +1804,7 @@
       Ajouter($2§torts=0)
      </Then>
     </RULE>
-    <RULE  name="Faute Grave17">
+    <RULE  name="faute grave priorite">
      <Param> $1:Véhicule </Param>
      <Param> $2:Véhicule </Param>
      <If>
@@ -1639,7 +1819,7 @@
       Ajouter($2§torts=0)
      </Then>
     </RULE>
-    <RULE  name="Faute Grave4">
+    <RULE  name="faute grave sortie parking">
      <Param> $1:Véhicule </Param>
      <Param> $2:Véhicule </Param>
      <If>
@@ -1835,6 +2015,27 @@
       Ajouter($2§torts=25)
      </Then>
     </RULE>
+    <RULE  name="véhicule stationné non agglomération">
+     <Param> $1:Véhicule </Param>
+     <Param> $2:Véhicule </Param>
+     <Param> $3:Circonstance </Param>
+     <If>
+      $1§c1=vrai
+      $2§c4=faux
+      $2§c14=faux
+      $2§c17=faux
+      $3§lieu=non agglomération
+      $1#$2
+     </If>
+     <Then>
+      Ajouter($1§torts=100)
+      Ajouter($2§torts=0)
+     </Then>
+    </RULE>
+  </BASE>
+  <BASE  name="Base Expert">
+    <PartOf> Base de Règles </PartOf>
+    <Inhibited> yes </Inhibited>
   </BASE>
  </BASES>
 
@@ -1857,20 +2058,16 @@ Activer(Evaluation des torts)
  Libérer(Base Règle Incoherence) ,
  Libérer(Base Calcul Torts) ,
  Trouver(Véhicule§torts) ,
- Ecrire(Véhicule§torts) )
+ Ecrire(Véhicule§torts) ,
+ Présenter(nouvelle règle incohérence) ,
+ DéposerC("test.txt","hello\n") )
     </Method>
     <Flux>
      <Ressource>
-       <Name> Constat </Name>
-       <Id> 1 </Id>
-       <Top> 115 </Top>
-       <Left> 79 </Left>
-     </Ressource>
-     <Ressource>
-       <Name> Base Règle Incoherence </Name>
-       <Id> 4 </Id>
-       <Top> 265 </Top>
-       <Left> 301 </Left>
+       <Name> Véhicule§torts </Name>
+       <Id> 6 </Id>
+       <Top> 129 </Top>
+       <Left> 743 </Left>
      </Ressource>
      <Ressource>
        <Name> Base Calcul Torts </Name>
@@ -1879,11 +2076,23 @@ Activer(Evaluation des torts)
        <Left> 558 </Left>
      </Ressource>
      <Ressource>
-       <Name> Véhicule§torts </Name>
-       <Id> 6 </Id>
-       <Top> 129 </Top>
-       <Left> 743 </Left>
+       <Name> Base Règle Incoherence </Name>
+       <Id> 4 </Id>
+       <Top> 265 </Top>
+       <Left> 301 </Left>
      </Ressource>
+     <Ressource>
+       <Name> Constat </Name>
+       <Id> 1 </Id>
+       <Top> 115 </Top>
+       <Left> 79 </Left>
+     </Ressource>
+     <Inference>
+       <Name> Pas 3 </Name>
+       <Id> 3 </Id>
+       <Top> 103 </Top>
+       <Left> 510 </Left>
+     </Inference>
      <Inference>
        <Name> Pas 2 </Name>
        <Id> 2 </Id>
@@ -1892,12 +2101,6 @@ Activer(Evaluation des torts)
      <Commentaire>
 Test de coherence
      </Commentaire>
-     </Inference>
-     <Inference>
-       <Name> Pas 3 </Name>
-       <Id> 3 </Id>
-       <Top> 103 </Top>
-       <Left> 510 </Left>
      </Inference>
      <Lien>
        <StartObj> 3 </StartObj>
@@ -1925,6 +2128,12 @@ Test de coherence
        <LinkType> 1 </LinkType>
      </Lien>
     </Flux>
+  </TASK>
+  <TASK  name="Maintenance">
+    <PartOf> Tâche Principale </PartOf>
+    <Method>
+Déposer("fichierIncohérences",nouvelle règle incohérence)
+    </Method>
   </TASK>
   <CONTROLTASK  name="²Traitement Incohérence">
     <Method>
